@@ -107,7 +107,7 @@ export function PhotoLightbox({
           <img
             src={photo.src}
             alt={photo.title}
-            className="max-h-[70vh] w-auto object-contain filter grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
+            className="max-h-[78vh] w-auto object-contain transition-all duration-300"
           />
         </div>
 

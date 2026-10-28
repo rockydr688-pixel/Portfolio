@@ -26,7 +26,7 @@ export function PhotographySection() {
             </h2>
           </div>
           <p className="font-mono text-xs text-neutral-400 max-w-md md:text-right">
-            Monochrome street, architectural geometries, and light balance. A personal creative pursuit outside the terminal.
+            Architectural geometries, natural atmospheres, and cultural heritage. A personal creative pursuit outside the terminal.
           </p>
         </div>
 
@@ -73,39 +73,47 @@ export function PhotographySection() {
           </div>
         ) : (
           /* Populated Editorial Grid */
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
             {photography.items.map((item: PhotoItem, index: number) => (
               <div
                 key={item.id}
                 onClick={() => setSelectedPhotoIndex(index)}
-                className="group relative cursor-pointer border border-white/10 bg-neutral-950 overflow-hidden hover:border-white/40 transition-all duration-300"
+                className="break-inside-avoid group relative cursor-pointer border border-white/10 bg-neutral-950 overflow-hidden hover:border-white/40 transition-all duration-300 shadow-xl"
               >
-                <div className="relative aspect-[4/5] overflow-hidden">
+                <div
+                  className={`relative w-full overflow-hidden ${
+                    item.aspectRatio === "landscape" ? "aspect-[4/3]" : "aspect-[4/5]"
+                  }`}
+                >
                   <img
                     src={item.src}
                     alt={item.title}
                     loading="lazy"
-                    className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
 
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
-                    <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
-                      {item.category || "PHOTOGRAPHY"}
-                    </span>
-                    <h4 className="text-sm font-medium text-white font-mono">
-                      {item.title}
-                    </h4>
-                    {item.location && (
-                      <p className="text-[11px] text-neutral-300 font-mono">
-                        {item.location}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="absolute top-3 right-3 p-1.5 bg-black/60 border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {/* Top Corner Action Indicator */}
+                  <div className="absolute top-3 right-3 p-1.5 bg-black/60 backdrop-blur-sm border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                     <Maximize2 className="w-3.5 h-3.5 text-white" />
                   </div>
+                </div>
+
+                {/* Editorial Caption Bar */}
+                <div className="p-4 border-t border-white/10 bg-neutral-950/90 flex flex-col gap-1 font-mono">
+                  <div className="flex items-center justify-between text-[10px] text-neutral-400">
+                    <span className="uppercase tracking-wider text-neutral-500">
+                      {item.category || "PHOTOGRAPHY"}
+                    </span>
+                    <span>{item.date || "2024"}</span>
+                  </div>
+                  <h4 className="text-sm font-medium text-white group-hover:text-amber-200 transition-colors">
+                    {item.title}
+                  </h4>
+                  {item.location && (
+                    <p className="text-[11px] text-neutral-400">
+                      {item.location}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}

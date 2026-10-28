@@ -113,7 +113,7 @@ export const portfolioData: PortfolioData = {
     },
     socialLinks: {
       github: "https://github.com/rockydr688-pixel",
-      linkedin: "https://linkedin.com/in/rakesh-d-r-ab2566393",
+      linkedin: "https://www.linkedin.com/in/rakesh-d-r-ab2566393",
       email: "mailto:rakeshdr.1si24is075@gmail.com",
       phone: "tel:+916360998067"
     },
